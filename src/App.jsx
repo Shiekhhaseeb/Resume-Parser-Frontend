@@ -44,20 +44,20 @@ function App() {
           <li>Max file size: 5MB</li>
           <li>Click on the button below to select your resume file.</li>
         </ul>
-        <input
+        <input className="file-input"
           disabled={loading}
           onChange={onFileSelect}
           type="file"
-          accept=".pdf, .doc, .docx"
+          accept=".pdf, .doc, .docx"  
         />
         {loading ? <p>Parsing Resume...</p> : null}
         {resumeData ? (
-          <textarea
-            value={JSON.stringify(resumeData, null, 2)}
+          <textarea className="resume-data"
+            // value={}
             readOnly
             rows="40"
             cols="50"
-          />
+          >{JSON.stringify(resumeData, null, 2)}</textarea>
         ) : null}
         {error ? <p className="error">{error}</p> : null}
       </div>

@@ -46,9 +46,12 @@
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
-  gap: 1rem;  
+  gap: 1rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
 }
-.instructions{
+.instructions {
   text-align: left;
 }
 
@@ -56,4 +59,26 @@
   color: red;
   font-weight: bold;
   margin-top: 1rem;
-} 
+}
+body {
+  background: #020024;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 49%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.resume-data {
+  background-color: #020024;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.file-input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
