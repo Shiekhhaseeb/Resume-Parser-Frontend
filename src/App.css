@@ -75,10 +75,10 @@ body {
   padding: 1rem;
   border-radius: 0.5rem;
 }
-.file-input {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
+.file-input-label  {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
 }
