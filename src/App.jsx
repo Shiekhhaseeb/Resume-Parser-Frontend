@@ -62,7 +62,7 @@ function App() {
             className="resume-data"
             // value={}
             readOnly
-            rows="40"
+            rows="25"
             cols="50"
           >
             {JSON.stringify(resumeData, null, 2)}
