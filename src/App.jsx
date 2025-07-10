@@ -1,14 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  // const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(false);
   const [resumeData, setResumeData] = useState(null);
+  const [error, setError] = useState(null);
   const onFileSelect = (e) => {
-    console.log(e.target.files[0]);
+    if (error) {
+      setError(null);
+    }
+    if (resumeData) {
+      setResumeData(null);
+    }
     const file = e.target.files[0];
     if (!file) return;
     setLoading(true);
@@ -21,40 +24,18 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Server response:", data);
         setResumeData(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error uploading file:", error);
+        setError(
+          "An error occurred while parsing the resume. Please try again."
+        );
         setLoading(false);
       });
   };
   return (
     <>
-      {/* <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-
-      {/* <p>Upload Your Resume here</p>
-      <button>Upload</button> */}
       <div className="app-wrapper">
         <h1>Resume Parser</h1>
         <ul className="instructions">
@@ -63,7 +44,12 @@ function App() {
           <li>Max file size: 5MB</li>
           <li>Click on the button below to select your resume file.</li>
         </ul>
-        <input onChange={onFileSelect} type="file" accept=".pdf, .doc, .docx" />
+        <input
+          disabled={loading}
+          onChange={onFileSelect}
+          type="file"
+          accept=".pdf, .doc, .docx"
+        />
         {loading ? <p>Parsing Resume...</p> : null}
         {resumeData ? (
           <textarea
@@ -73,6 +59,7 @@ function App() {
             cols="50"
           />
         ) : null}
+        {error ? <p className="error">{error}</p> : null}
       </div>
     </>
   );
